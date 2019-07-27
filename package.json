@@ -13,9 +13,12 @@
     "url": "git+https://github.com/micalgenus/hitit-discord-bot.git"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "discord.js": "^11.5.1",
     "dotenv": "^8.0.0",
-    "puppeteer": "^1.19.0"
+    "puppeteer": "^1.19.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -23,7 +26,10 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.5.5",
+    "@types/cheerio": "^0.22.12",
     "@types/node": "^12.6.8",
+    "@types/puppeteer": "^1.19.0",
+    "@types/request-promise": "^4.1.44",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-preset-minify": "^0.5.0"
   }

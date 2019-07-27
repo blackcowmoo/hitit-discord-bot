@@ -29,6 +29,8 @@ client.on('message', message => {
     case '!롤토체스':
     case '!롤체':
       return lolchess(message, options);
+    case '!내바박':
+      return lolchess(message, ['고스트', '체스왕']);
   }
 });
 
