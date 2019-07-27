@@ -6,6 +6,7 @@ import '@/config';
 
 // Import the discord.js module
 import Discord from 'discord.js';
+import { hook } from '@/webhook';
 
 // commands
 import lolchess from './lolchess';
@@ -18,7 +19,7 @@ const client = new Discord.Client();
  * received from Discord
  */
 client.on('ready', () => {
-  console.log('Hitit Discord Bot Ready!');
+  hook.send('봇 살아남 !');
 });
 
 // Create an event listener for messages
