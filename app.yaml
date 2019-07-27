@@ -1,0 +1,10 @@
+runtime: nodejs10
+env_variables:
+  NODE_ENV: production
+service: default
+inbound_services:
+- warmup
+handlers:
+- url: /.*
+  secure: always
+  script: auto
