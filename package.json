@@ -1,0 +1,26 @@
+{
+  "name": "hitit-discord-bot",
+  "version": "1.0.0",
+  "description": "때리다 그것 디스코드 봇",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "babel src --out-dir dist --copy-files --extensions \".ts,.tsx\"",
+    "start": "node ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micalgenus/hitit-discord-bot.git"
+  },
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/node": "^12.6.8",
+    "babel-plugin-module-resolver": "^3.2.0"
+  }
+}
