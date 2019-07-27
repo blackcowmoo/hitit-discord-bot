@@ -2,10 +2,9 @@ runtime: nodejs10
 env_variables:
   NODE_ENV: production
 
-  instance_class: B1
+instance_class: B1
 basic_scaling:
   max_instances: 1
-  idle_timeout: 10m
 inbound_services:
   - warmup
 
