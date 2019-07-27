@@ -7,6 +7,9 @@ import '@/config';
 // Import the discord.js module
 import Discord from 'discord.js';
 
+// commands
+import lolchess from './lolchess';
+
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
@@ -15,15 +18,17 @@ const client = new Discord.Client();
  * received from Discord
  */
 client.on('ready', () => {
-  console.log('I am ready!');
+  console.log('Hitit Discord Bot Ready!');
 });
 
 // Create an event listener for messages
 client.on('message', message => {
-  // If the message is "ping"
-  if (message.content === 'ping') {
-    // Send "pong" to the same channel
-    message.channel.send('pong');
+  const [command, ...options] = message.content.split(' ');
+  switch (command) {
+    case '!lolchess':
+    case '!롤토체스':
+    case '!롤체':
+      return lolchess(message, options);
   }
 });
 

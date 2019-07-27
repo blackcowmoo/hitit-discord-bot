@@ -14,13 +14,15 @@
   },
   "dependencies": {
     "discord.js": "^11.5.1",
-    "dotenv": "^8.0.0"
+    "dotenv": "^8.0.0",
+    "puppeteer": "^1.19.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
+    "@babel/register": "^7.5.5",
     "@types/node": "^12.6.8",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-preset-minify": "^0.5.0"
