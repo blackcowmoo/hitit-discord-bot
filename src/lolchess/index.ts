@@ -12,6 +12,7 @@ const lolchess = async (message: Discord.Message, options: string[]) => {
   const $ = cheerio.load(html);
 
   const tier = {
+    닉네임: options.join(' '),
     티어: $('.profile__tier__summary .profile__tier__summary__tier').text(),
     LP: $('.profile__tier__summary .profile__tier__summary__lp').text(),
     랭크: [$('.profile__tier__summary .top-percent').text(), $('.profile__tier__summary .rank-region').text()].join(' / '),
