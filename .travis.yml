@@ -44,6 +44,10 @@ deploy:
     skip_cleanup: true
     on:
       branch: master
+  - provider: script
+    script: yarn deploy:cron
+    on:
+      branch: master
 
 after_deploy:
   - export APP_VERSION=$(gcloud app versions list --service=default --sort-by=LAST_DEPLOYED --format="table(version.id)" --account=$GCLOUD_ACCOUNT_EMAIL | tail -1)
