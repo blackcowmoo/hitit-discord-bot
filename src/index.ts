@@ -37,6 +37,8 @@ client.on('message', message => {
       return lolchess(message, options);
     case '!내바박':
       return lolchess(message, ['고스트', '체스왕']);
+    case '!크로스핏':
+      return message.channel.send('https://namu.wiki/w/크로스핏');
   }
 });
 
