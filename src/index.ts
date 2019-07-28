@@ -24,6 +24,11 @@ client.on('ready', () => {
 
 // Create an event listener for messages
 client.on('message', message => {
+  // TODO: 지금 살아있는 봇 체크 루틴 추가
+  if (false) {
+    client.destroy();
+  }
+
   const [command, ...options] = message.content.split(' ');
   switch (command) {
     case '!lolchess':
