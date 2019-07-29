@@ -4,9 +4,9 @@
   "description": "때리다 그것 디스코드 봇",
   "scripts": {
     "prebuild": "rm -rf dist",
-    "build": "babel src --out-dir dist --copy-files --extensions \".ts,.tsx\"",
+    "build": "webpack",
     "build:prod": "NODE_ENV=production yarn build",
-    "start": "node ./dist/index.js",
+    "start": "node ./dist/main.bundle.js",
     "deploy:cron": "gcloud app deploy cron.yaml"
   },
   "repository": {
@@ -30,7 +30,9 @@
     "@types/node": "^12.6.8",
     "@types/puppeteer": "^1.19.0",
     "@types/request-promise": "^4.1.44",
-    "babel-plugin-module-resolver": "^3.2.0",
-    "babel-preset-minify": "^0.5.0"
+    "babel-loader": "^8.0.6",
+    "babel-preset-minify": "^0.5.0",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6"
   }
 }
