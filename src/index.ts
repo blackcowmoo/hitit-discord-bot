@@ -28,6 +28,7 @@ app.use('/', async (req, res) => {
   }
 });
 
-app.listen(3000, function() {
-  console.log('Express server has started on port 3000');
+const port = parseInt(process.env.PORT, 10) || 3000;
+app.listen(port, function() {
+  console.log(`Express server has started on port ${port}`);
 });
