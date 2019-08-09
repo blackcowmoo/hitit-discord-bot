@@ -1,0 +1,1 @@
+export { voo } from './etf';

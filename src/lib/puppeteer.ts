@@ -1,15 +1,10 @@
+import path from 'path';
 import puppeteer from 'puppeteer';
 
 export const getBrowser = async () => {
   return await puppeteer.launch({
-    args: [
-      '--ignore-certificate-errors',
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--lang=ja,en-US;q=0.9,en;q=0.8',
-      '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
-    ],
+    args: ['--disable-gpu', '--disable-dev-shm-usage', '--disable-setuid-sandbox', '--no-first-run', '--no-sandbox', '--no-zygote', '--single-process'],
+    ignoreDefaultArgs: ['--disable-extensions'],
   });
 };
 
