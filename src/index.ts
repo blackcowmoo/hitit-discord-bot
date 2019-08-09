@@ -4,43 +4,30 @@
 
 import '@/config';
 
-// Import the discord.js module
-import Discord from 'discord.js';
-// import { hook } from '@/webhook';
+import lolchess from '@/lolchess';
 
-// commands
-import lolchess from './lolchess';
+import { app } from '@/lib/express';
 
-// Create an instance of a Discord client
-const client = new Discord.Client();
+app.use('/', async (req, res) => {
+  try {
+    if (!req.body.content) return res.status(500).send('');
 
-/**
- * The ready event is vital, it means that only _after_ this will your bot start reacting to information
- * received from Discord
- */
-client.on('ready', () => {
-  // hook.send('봇 살아남 !');
-});
-
-// Create an event listener for messages
-client.on('message', message => {
-  // TODO: 지금 살아있는 봇 체크 루틴 추가
-  if (false) {
-    client.destroy();
-  }
-
-  const [command, ...options] = message.content.split(' ');
-  switch (command) {
-    case '!lolchess':
-    case '!롤토체스':
-    case '!롤체':
-      return lolchess(message, options);
-    case '!내바박':
-      return lolchess(message, ['고스트', '체스왕']);
-    case '!크로스핏':
-      return message.channel.send('https://namu.wiki/w/크로스핏');
+    const [command, ...options] = req.body.content.split(' ');
+    switch (command) {
+      case '!lolchess':
+      case '!롤토체스':
+      case '!롤체':
+        return res.send(lolchess(options));
+      case '!내바박':
+        return res.send(lolchess(['고스트', '체스왕']));
+      case '!크로스핏':
+        return res.send('https://namu.wiki/w/크로스핏');
+    }
+  } catch (err) {
+    return res.status(500).send('');
   }
 });
 
-// Log our bot in using the token from https://discordapp.com/developers/applications/me
-client.login(process.env.DISCORD_BOT_TOKEN);
+app.listen(8080, function() {
+  console.log('Express server has started on port 8080');
+});
