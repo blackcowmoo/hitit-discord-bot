@@ -10,7 +10,7 @@ import { app } from '@/lib/express';
 
 app.use('/', async (req, res) => {
   try {
-    if (!req.body.content) return res.status(500).send('');
+    if (!req.body.content) return res.status(404).send('');
 
     const [command, ...options] = req.body.content.split(' ');
     switch (command) {
