@@ -3,6 +3,6 @@ import bodyParser from 'body-parser';
 
 export const app = (() => {
   const app = express();
-  app.use(bodyParser());
+  app.use(bodyParser.json());
   return app;
 })();
