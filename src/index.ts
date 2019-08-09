@@ -28,6 +28,6 @@ app.use('/', async (req, res) => {
   }
 });
 
-app.listen(8080, function() {
-  console.log('Express server has started on port 8080');
+app.listen(3000, function() {
+  console.log('Express server has started on port 3000');
 });
