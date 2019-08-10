@@ -19,6 +19,8 @@ const commandParser = async (command: string, ...options: string[]): Promise<str
       return lolchess(['고스트', '체스왕']);
     case '!천년정지':
       return lolchess(['Aind']);
+    case '!주머니':
+      return lolchess(['영판항']);
     case '!크로스핏':
       return 'https://namu.wiki/w/크로스핏';
     case '!VOO':
