@@ -7,7 +7,6 @@
     "build": "webpack",
     "build:prod": "NODE_ENV=production yarn build",
     "start": "node ./dist/main.bundle.js",
-    "deploy:cron": "gcloud app deploy cron.yaml"
     "start:dev": "webpack-dev-server"
   },
   "repository": {

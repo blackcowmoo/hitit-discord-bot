@@ -9,19 +9,7 @@ module.exports = {
     filename: 'main.bundle.js',
     libraryTarget: 'commonjs',
   },
-  module: {
-    rules: [
-      {
-        test: /\.(j|t)s$/,
-        use: {
-          loader: 'babel-loader',
-          options: { babelrc: true },
-        },
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['.ts', '.js', '.json'],
-    alias: { '@': path.join(__dirname, 'src') },
-  },
+  module: { rules: [{ test: /\.(j|t)s$/, use: { loader: 'babel-loader', options: { babelrc: true } } }] },
+  resolve: { extensions: ['.ts', '.js', '.json'], alias: { '@': path.join(__dirname, 'src') } },
+  optimization: { splitChunks: { chunks: 'all' } },
 };

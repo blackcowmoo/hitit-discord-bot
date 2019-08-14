@@ -3,8 +3,7 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  }
+    "paths": { "@/*": ["src/*"] }
+  },
+  "exclude": ["node_modules", "**/*.js"]
 }
