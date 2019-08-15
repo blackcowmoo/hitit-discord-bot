@@ -20,7 +20,7 @@ export const voo = async (): Promise<string> => {
   const voo = {
     가격: price,
     환율: dollar,
-    한국가격: parseInt(price.replace(',', ''), 10) * parseInt(dollar.replace(',', ''), 10),
+    한국가격: (+price.replace(',', '') * +dollar.replace(',', '')).toFixed(2),
   };
 
   return Object.entries(voo)
