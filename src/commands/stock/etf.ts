@@ -4,6 +4,7 @@ import rp from 'request-promise';
 // import { getBrowser } from '@/lib/puppeteer';
 
 import cheerio from 'cheerio';
+import { makePrice } from '@/lib/utils/number';
 
 export const voo = async (): Promise<string> => {
   const URL = 'https://kr.investing.com/etfs/vanguard-s-p-500';
@@ -20,7 +21,7 @@ export const voo = async (): Promise<string> => {
   const voo = {
     가격: price,
     환율: dollar,
-    한국가격: (+price.replace(',', '') * +dollar.replace(',', '')).toFixed(2),
+    한국가격: makePrice(+price.replace(',', '') * +dollar.replace(',', '')),
   };
 
   return Object.entries(voo)
