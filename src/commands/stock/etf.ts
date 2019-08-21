@@ -39,7 +39,7 @@ export const agg = async (): Promise<string> => {
   const $ = cheerio.load(html);
 
   const price = $('.inlineblock.pid-503-last').text();
-  const dollar = $('.js-item-last.pid-1-last').text();
+  const dollar = $('.js-item-last.pid-650-last').text();
 
   const voo = {
     가격: price,
