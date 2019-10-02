@@ -1,1 +1,1 @@
-export { voo, agg } from './etf';
+export { voo, agg, tvix } from './etf';
