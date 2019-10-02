@@ -6,8 +6,8 @@ import rp from 'request-promise';
 import cheerio from 'cheerio';
 import { makePrice } from '@/lib/utils/number';
 
-const getStockFromInvesting = async (id: number) => {
-  const URL = 'https://kr.investing.com/etfs/vanguard-s-p-500';
+const getStockFromInvesting = async (url: string, id: number) => {
+  const URL = `https://kr.investing.com/etfs/${url}`;
   const html: string = await rp({
     method: 'GET',
     uri: URL,
@@ -18,17 +18,17 @@ const getStockFromInvesting = async (id: number) => {
   const price = $(`.inlineblock.pid-${id}-last`).text();
   const dollar = $('.js-item-last.pid-650-last').text();
 
-  const voo = {
+  const result = {
     가격: price,
     환율: dollar,
     한국가격: makePrice(+price.replace(',', '') * +dollar.replace(',', '')),
   };
 
-  return Object.entries(voo)
+  return Object.entries(result)
     .map(e => `${e[0]}: ${e[1]}`)
     .join('\n');
 };
 
-export const voo = async (): Promise<string> => await getStockFromInvesting(38165);
-export const agg = async (): Promise<string> => await getStockFromInvesting(503);
-export const tvix = async (): Promise<string> => await getStockFromInvesting(38153);
+export const voo = async (): Promise<string> => await getStockFromInvesting('vanguard-s-p-500', 38165);
+export const agg = async (): Promise<string> => await getStockFromInvesting('ishares-barclays-agg', 503);
+export const tvix = async (): Promise<string> => await getStockFromInvesting('velocityshares-dly-2x-vix-sh.-term-historical-data', 38153);
