@@ -23,15 +23,14 @@ const commandParser = async (command: string, ...options: string[]): Promise<str
       return lolchess(['영판항']);
     case '!크로스핏':
       return 'https://namu.wiki/w/크로스핏';
-  }
-
-  if (
-    Object.keys(stock)
-      .map(c => `!${c}`)
-      .includes(command.toLowerCase())
-  ) {
-    const c = stock[command.toLowerCase()];
-    return await c();
+    case '!voo':
+      return stock.voo();
+    case '!agg':
+      return stock.agg();
+    case '!tvix':
+      return stock.tvix();
+    case '!mo':
+      return stock.mo();
   }
 };
 
