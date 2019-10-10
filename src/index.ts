@@ -5,7 +5,7 @@
 import '@/config';
 
 import lolchess from '@/commands/lolchess';
-import { voo, agg, tvix } from '@/commands/stock';
+import * as stock from '@/commands/stock';
 
 import { app } from '@/lib/express';
 
@@ -23,12 +23,15 @@ const commandParser = async (command: string, ...options: string[]): Promise<str
       return lolchess(['영판항']);
     case '!크로스핏':
       return 'https://namu.wiki/w/크로스핏';
-    case '!voo':
-      return voo();
-    case '!agg':
-      return agg();
-    case '!tvix':
-      return tvix();
+  }
+
+  if (
+    Object.keys(stock)
+      .map(c => `!${c}`)
+      .includes(command.toLowerCase())
+  ) {
+    const c = stock[command.toLowerCase()];
+    return await c();
   }
 };
 

@@ -32,3 +32,4 @@ const getStockFromInvesting = async (url: string, id: number) => {
 export const voo = async (): Promise<string> => await getStockFromInvesting('vanguard-s-p-500', 38165);
 export const agg = async (): Promise<string> => await getStockFromInvesting('ishares-barclays-agg', 503);
 export const tvix = async (): Promise<string> => await getStockFromInvesting('velocityshares-dly-2x-vix-sh.-term-historical-data', 38153);
+export const mo = async (): Promise<string> => await getStockFromInvesting('altria-group', 8044);
