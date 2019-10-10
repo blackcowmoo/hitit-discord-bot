@@ -7,7 +7,7 @@ import cheerio from 'cheerio';
 import { makePrice } from '@/lib/utils/number';
 
 const getStockFromInvesting = async (url: string, id: number) => {
-  const URL = `https://kr.investing.com/etfs/${url}`;
+  const URL = `https://kr.investing.com/${url}`;
   const html: string = await rp({
     method: 'GET',
     uri: URL,
@@ -29,7 +29,7 @@ const getStockFromInvesting = async (url: string, id: number) => {
     .join('\n');
 };
 
-export const voo = async (): Promise<string> => await getStockFromInvesting('vanguard-s-p-500', 38165);
-export const agg = async (): Promise<string> => await getStockFromInvesting('ishares-barclays-agg', 503);
-export const tvix = async (): Promise<string> => await getStockFromInvesting('velocityshares-dly-2x-vix-sh.-term-historical-data', 38153);
-export const mo = async (): Promise<string> => await getStockFromInvesting('altria-group', 8044);
+export const voo = async (): Promise<string> => await getStockFromInvesting('/etfs/vanguard-s-p-500', 38165);
+export const agg = async (): Promise<string> => await getStockFromInvesting('/etfs/ishares-barclays-agg', 503);
+export const tvix = async (): Promise<string> => await getStockFromInvesting('/etfs/velocityshares-dly-2x-vix-sh.-term-historical-data', 38153);
+export const mo = async (): Promise<string> => await getStockFromInvesting('/equities/altria-group', 8044);
