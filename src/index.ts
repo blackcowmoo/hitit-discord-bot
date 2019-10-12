@@ -5,7 +5,7 @@
 import '@/config';
 
 import lolchess from '@/commands/lolchess';
-import * as stock from '@/commands/stock';
+import { stock } from '@/commands/stock';
 
 import { app } from '@/lib/express';
 
@@ -24,13 +24,10 @@ const commandParser = async (command: string, ...options: string[]): Promise<str
     case '!크로스핏':
       return 'https://namu.wiki/w/크로스핏';
     case '!voo':
-      return stock.voo();
     case '!agg':
-      return stock.agg();
     case '!tvix':
-      return stock.tvix();
     case '!mo':
-      return stock.mo();
+      return stock(command);
   }
 };
 

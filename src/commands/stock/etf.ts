@@ -29,7 +29,15 @@ const getStockFromInvesting = async (url: string, id: number) => {
     .join('\n');
 };
 
-export const voo = async (): Promise<string> => await getStockFromInvesting('/etfs/vanguard-s-p-500', 38165);
-export const agg = async (): Promise<string> => await getStockFromInvesting('/etfs/ishares-barclays-agg', 503);
-export const tvix = async (): Promise<string> => await getStockFromInvesting('/etfs/velocityshares-dly-2x-vix-sh.-term-historical-data', 38153);
-export const mo = async (): Promise<string> => await getStockFromInvesting('/equities/altria-group', 8044);
+export const stock = async (command: string): Promise<string> => {
+  switch (command.toLocaleLowerCase()) {
+    case '!voo':
+      return await getStockFromInvesting('/etfs/vanguard-s-p-500', 38165);
+    case '!agg':
+      return await getStockFromInvesting('/etfs/ishares-barclays-agg', 503);
+    case '!tvix':
+      return await getStockFromInvesting('/etfs/velocityshares-dly-2x-vix-sh.-term-historical-data', 38153);
+    case '!mo':
+      return await getStockFromInvesting('/equities/altria-group', 8044);
+  }
+};

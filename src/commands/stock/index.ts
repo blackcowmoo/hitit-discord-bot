@@ -1,1 +1,1 @@
-export * from './etf';
+export { stock } from './etf';
