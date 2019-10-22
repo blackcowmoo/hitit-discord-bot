@@ -39,5 +39,7 @@ export const stock = async (command: string): Promise<string> => {
       return await getStockFromInvesting('/etfs/velocityshares-dly-2x-vix-sh.-term-historical-data', 38153);
     case '!mo':
       return await getStockFromInvesting('/equities/altria-group', 8044);
+    case '!ba';
+      return await getStockFromInvesting('/equities/boeing-co', 238);
   }
 };
