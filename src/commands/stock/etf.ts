@@ -14,8 +14,8 @@ const getStockFromInvesting = async (url: string, id: number) => {
     headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36' },
   });
   const $ = cheerio.load(html);
-
-  const price = $(`.inlineblock.pid-${id}-last`).text();
+  
+  const price = $(`.pidExt-${id}-last`).text() ? $(`.pidExt-${id}-last`).text() : $(`.inlineblock.pid-${id}-last`).text();
   const dollar = $('.js-item-last.pid-650-last').text();
 
   const result = {
