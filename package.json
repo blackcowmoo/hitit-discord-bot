@@ -4,10 +4,10 @@
   "description": "때리다 그것 디스코드 봇",
   "scripts": {
     "prebuild": "rm -rf dist",
-    "build": "webpack",
+    "build": "babel src --out-dir dist --copy-files --extensions \".ts,.tsx\"",
     "build:prod": "NODE_ENV=production yarn build",
-    "start": "node ./dist/main.bundle.js",
-    "start:dev": "webpack-dev-server"
+    "start": "node ./dist/index.js",
+    "start:dev": "NODE_ENV=test nodemon --watch src/ --exec babel-node --extensions \".ts,.tsx\" src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@google-cloud/datastore": "^4.4.1",
-    "@types/express": "^4.17.0",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
     "discord.js": "^11.5.1",
@@ -28,18 +27,18 @@
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
+    "@babel/node": "^7.6.3",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
-    "@babel/register": "^7.5.5",
+    "@babel/register": "^7.6.2",
     "@types/cheerio": "^0.22.12",
     "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.17.1",
     "@types/node": "^12.6.8",
     "@types/puppeteer": "^1.19.0",
     "@types/request-promise": "^4.1.44",
-    "babel-loader": "^8.0.6",
+    "babel-plugin-module-resolver": "^3.2.0",
     "babel-preset-minify": "^0.5.0",
-    "webpack": "^4.38.0",
-    "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.8.0"
+    "nodemon": "^1.19.4"
   }
 }
