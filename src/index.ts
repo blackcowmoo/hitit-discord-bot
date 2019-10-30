@@ -6,6 +6,7 @@ import '@/config';
 
 import lolchess from '@/commands/lolchess';
 import { stock } from '@/commands/stock';
+import { echo } from '@/commands/echo';
 
 import { app } from '@/lib/express';
 
@@ -28,6 +29,11 @@ const commandParser = async (command: string, ...options: string[]): Promise<str
   const stockResult = await stock(command.toLowerCase());
   if (stockResult) {
     return stockResult;
+  }
+
+  const echoMessage = await echo([command, ...options].join(' '));
+  if (echoMessage) {
+    return echoMessage;
   }
 };
 
