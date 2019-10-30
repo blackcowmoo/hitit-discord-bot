@@ -24,8 +24,11 @@ const commandParser = async (command: string, ...options: string[]): Promise<str
       return lolchess(['영판항']);
     case '!크로스핏':
       return 'https://namu.wiki/w/크로스핏';
-    case '!cmd':
-      return 'Command: ' + (await echo([command, ...options].join(' ')));
+    // case '!cmd':
+    //   return 'Command: ' + (await echo([command, ...options].join(' ')));
+    case '!echo':
+      echo(options[0] || '', options[1] || '');
+      return '';
   }
 
   const stockResult = await stock(command.toLowerCase());

@@ -1,6 +1,7 @@
-import { getCommands } from '@/models/command';
+import { addEchoMessage } from '@/models/echo';
 
-export const echo = async (message: string) => {
-  const commands = await getCommands();
-  return JSON.stringify(commands);
+export const echo = (text: string, message: string) => {
+  if (text && message) {
+    addEchoMessage(text, message);
+  }
 };
