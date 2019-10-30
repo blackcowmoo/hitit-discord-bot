@@ -27,4 +27,5 @@ class DatastoreClient {
   }
 }
 
-export default new DatastoreClient(process.env.GOOGLE_DATASTORE_PROJECT_ID);
+export const ds = new DatastoreClient(process.env.GOOGLE_DATASTORE_PROJECT_ID);
+export default ds;

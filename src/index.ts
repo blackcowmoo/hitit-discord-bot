@@ -24,6 +24,8 @@ const commandParser = async (command: string, ...options: string[]): Promise<str
       return lolchess(['영판항']);
     case '!크로스핏':
       return 'https://namu.wiki/w/크로스핏';
+    case '!cmd':
+      return 'Command: ' + (await echo([command, ...options].join(' ')));
   }
 
   const stockResult = await stock(command.toLowerCase());
@@ -31,10 +33,10 @@ const commandParser = async (command: string, ...options: string[]): Promise<str
     return stockResult;
   }
 
-  const echoMessage = await echo([command, ...options].join(' '));
-  if (echoMessage) {
-    return echoMessage;
-  }
+  // const echoMessage = await echo([command, ...options].join(' '));
+  // if (echoMessage) {
+  //   return echoMessage;
+  // }
 };
 
 app.use('/', async (req, res) => {

@@ -1,5 +1,6 @@
 import { getCommands } from '@/models/command';
 
 export const echo = async (message: string) => {
-  return message;
+  const commands = await getCommands();
+  return JSON.stringify(commands);
 };
