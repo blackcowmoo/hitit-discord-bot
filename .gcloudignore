@@ -44,3 +44,6 @@ travis.tar.enc
 LICENSE
 README.md
 .DS_Store
+
+# Source file
+src/
