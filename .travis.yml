@@ -9,10 +9,9 @@ cache:
   directories:
     - '$HOME/google-cloud-sdk'
 
-# branches:
-#   only:
-#     - develop
-#     - travis
+branches:
+  only:
+    - master
 
 env:
   global:
@@ -44,12 +43,7 @@ deploy:
     skip_cleanup: true
     on:
       branch: master
-  # - provider: script
-  #   script: yarn deploy:cron
-  #   on:
-  #     branch: master
 
 after_deploy:
   - export APP_VERSION=$(gcloud app versions list --service=default --sort-by=ID --format="table(version.id)" --account=$GCLOUD_ACCOUNT_EMAIL | tail -1)
   - gcloud app services set-traffic default --splits $APP_VERSION=1 --account=$GCLOUD_ACCOUNT_EMAIL
-  # - wget seraphic-plexus-248012.appspot.com --timeout=1 --tries=1 2>/dev/null || echo 'Wake UP'
