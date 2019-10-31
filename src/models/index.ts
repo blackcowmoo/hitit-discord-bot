@@ -1,6 +1,7 @@
 import { Datastore, Query } from '@google-cloud/datastore';
 import { RunQueryInfo } from '@google-cloud/datastore/build/src/query';
 import { entity } from '@google-cloud/datastore/build/src/entity';
+import { google } from '@google-cloud/datastore/build/proto/datastore';
 
 export enum DataStoreKind {
   command = 'command',
@@ -65,6 +66,18 @@ class DatastoreClient {
         resolve(data);
       });
     });
+  }
+
+  public async deleteEntity(kind: DataStoreKind, id: string) {
+    if (id) {
+      const key = this.store.key([kind, parseInt(id, 10)]);
+      return new Promise<google.datastore.v1.ICommitResponse>((resolve, reject) => {
+        this.store.delete(key, (err, response) => {
+          if (err) return reject(err);
+          else return resolve(response);
+        });
+      });
+    }
   }
 }
 
