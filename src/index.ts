@@ -6,11 +6,13 @@ import '@/config';
 
 import lolchess from '@/commands/lolchess';
 import { stock } from '@/commands/stock';
-import { echo } from '@/commands/echo';
+import { echo, echoMessage } from '@/commands/echo';
 
 import { app } from '@/lib/express';
 
 const commandParser = async (command: string, options: string[]): Promise<string> => {
+  let tmp: any;
+
   switch (command.toLowerCase()) {
     case '!lolchess':
     case '!롤토체스':
@@ -27,7 +29,8 @@ const commandParser = async (command: string, options: string[]): Promise<string
     // case '!cmd':
     //   return 'Command: ' + (await echo([command, ...options].join(' ')));
     case '!echo':
-      return echo(options[0] || '', options[1] || '') && '';
+      [, ...tmp] = options;
+      return echo(options[0] || '', tmp.join(' ')) && '';
   }
 
   const stockResult = await stock(command.toLowerCase());
@@ -35,10 +38,10 @@ const commandParser = async (command: string, options: string[]): Promise<string
     return stockResult;
   }
 
-  // const echoMessage = await echo([command, ...options].join(' '));
-  // if (echoMessage) {
-  //   return echoMessage;
-  // }
+  const echoResult = await echoMessage([command, ...options].join(' '));
+  if (echoResult) {
+    return echoResult;
+  }
 };
 
 app.use('/', async (req, res) => {

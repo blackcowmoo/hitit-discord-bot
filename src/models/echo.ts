@@ -12,8 +12,8 @@ export const getEchoMessages = async () => {
   return data;
 };
 
-export const addEchoMessage = async (text: string, message: string) => {
-  if (text && message) {
-    return ds.addEntity(DataStoreKind.echo, { id: undefined, text, message });
+export const addEchoMessage = async (text?: string, ...message: string[]) => {
+  if (text && message && message.length > 0) {
+    return ds.addEntity(DataStoreKind.echo, { id: undefined, text, message: message.join(' ') });
   }
 };
