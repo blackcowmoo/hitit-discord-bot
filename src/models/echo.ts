@@ -1,7 +1,6 @@
-import { ds, DataStoreKind } from '@/models';
+import { ds, DataStoreKind, DatastoreObject } from '@/models';
 
-interface Echo {
-  id?: string;
+interface Echo extends DatastoreObject {
   text: string;
   message: string;
 }
@@ -17,7 +16,7 @@ export const deleteEchoMessage = async (text: string) => {
   const echoMessages = await getEchoMessages();
   const alreadyMessage = echoMessages.filter(m => m.text === text);
   for (const m of alreadyMessage) {
-    await ds.deleteEntity(DataStoreKind.echo, m.id || '');
+    await ds.deleteEntity(DataStoreKind.echo, m._id || '');
   }
 };
 

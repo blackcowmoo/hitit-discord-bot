@@ -8,8 +8,8 @@ export enum DataStoreKind {
   echo = 'echo',
 }
 
-interface DatastoreObject {
-  _id: string;
+export interface DatastoreObject {
+  _id?: string;
 }
 
 const fromDatastore = <T extends DatastoreObject>(obj: T) => {
