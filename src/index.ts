@@ -10,7 +10,7 @@ import { echo } from '@/commands/echo';
 
 import { app } from '@/lib/express';
 
-const commandParser = async (command: string, ...options: string[]): Promise<string> => {
+const commandParser = async (command: string, options: string[]): Promise<string> => {
   switch (command.toLowerCase()) {
     case '!lolchess':
     case '!롤토체스':
