@@ -8,6 +8,15 @@ export enum DataStoreKind {
   echo = 'echo',
 }
 
+interface DatastoreObject {
+  _id: string;
+}
+
+const fromDatastore = <T extends DatastoreObject>(obj: T) => {
+  obj._id = obj[Datastore.KEY].id;
+  return obj;
+};
+
 const toDatastore = (entity: any, nonIndexed?: string[]) => {
   nonIndexed = nonIndexed || [];
   const results = [];
@@ -43,14 +52,14 @@ class DatastoreClient {
           return reject(err);
         }
 
-        resolve({ entities, nextQuery });
+        resolve({ entities: entities.map(e => fromDatastore(e)), nextQuery });
       });
     });
   }
 
-  public async addEntity<T extends { id?: string }>(kind: DataStoreKind, data: T) {
+  public async addEntity<T extends DatastoreObject & { id: string }>(kind: DataStoreKind, data: T) {
     return new Promise<T>((resolve, reject) => {
-      const key: entity.Key = data.id ? this.store.key([kind, parseInt(data.id, 10)]) : this.store.key(kind);
+      const key: entity.Key = data._id ? this.store.key([kind, parseInt(data._id, 10)]) : this.store.key(kind);
 
       const entity = {
         key: key,
