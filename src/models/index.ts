@@ -48,7 +48,7 @@ class DatastoreClient {
   }
 
   public async addEntity<T extends { id?: string }>(kind: DataStoreKind, data: T) {
-    return new Promise((resolve, reject) => {
+    return new Promise<T>((resolve, reject) => {
       const key: entity.Key = data.id ? this.store.key([kind, parseInt(data.id, 10)]) : this.store.key(kind);
 
       const entity = {

@@ -27,8 +27,7 @@ const commandParser = async (command: string, ...options: string[]): Promise<str
     // case '!cmd':
     //   return 'Command: ' + (await echo([command, ...options].join(' ')));
     case '!echo':
-      echo(options[0] || '', options[1] || '');
-      return '';
+      return echo(options[0] || '', options[1] || '') && '';
   }
 
   const stockResult = await stock(command.toLowerCase());
