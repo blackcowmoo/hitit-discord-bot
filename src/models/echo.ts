@@ -13,13 +13,17 @@ export const getEchoMessages = async () => {
   return data;
 };
 
+export const deleteEchoMessage = async (text: string) => {
+  const echoMessages = await getEchoMessages();
+  const alreadyMessage = echoMessages.filter(m => m.text === text);
+  for (const m of alreadyMessage) {
+    await ds.deleteEntity(DataStoreKind.echo, m.id || '');
+  }
+};
+
 export const addEchoMessage = async (text?: string, ...message: string[]) => {
   if (text && message && message.length > 0) {
-    const echoMessages = await getEchoMessages();
-    const alreadyMessage = echoMessages.filter(m => m.text === text);
-    for (const m of alreadyMessage) {
-      await ds.deleteEntity(DataStoreKind.echo, m.id || '');
-    }
+    await deleteEchoMessage(text);
 
     return ds.addEntity(DataStoreKind.echo, { id: undefined, text, message: message.join(' ') });
   }

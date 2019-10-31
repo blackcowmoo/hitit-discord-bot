@@ -1,8 +1,14 @@
-import { addEchoMessage, getEchoMessages } from '@/models/echo';
+import { addEchoMessage, getEchoMessages, deleteEchoMessage } from '@/models/echo';
 
 export const echo = async (text: string, message: string) => {
   if (text && message) {
     return await addEchoMessage(text, message);
+  }
+};
+
+export const removeMessage = async (text: string) => {
+  if (text) {
+    await deleteEchoMessage(text);
   }
 };
 
