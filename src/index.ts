@@ -6,7 +6,7 @@ import '@/config';
 
 import lolchess from '@/commands/lolchess';
 import { stock } from '@/commands/stock';
-import { echo, echoMessage, removeMessage } from '@/commands/echo';
+import { echo, echoMessage, removeMessage, getEchoMessage } from '@/commands/echo';
 
 import { app } from '@/lib/express';
 
@@ -29,7 +29,12 @@ const commandParser = async (command: string, options: string[]): Promise<string
     // case '!cmd':
     //   return 'Command: ' + (await echo([command, ...options].join(' ')));
     case '!echo':
+      if (options.length === 0) {
+        return (await getEchoMessage()).map(e => `${e.text}: ${e.message}`).join('\n');
+      }
+
       [, ...tmp] = options;
+
       return echo(options[0] || '', tmp.join(' ')) && '';
 
     case '!!echo':
