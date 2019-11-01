@@ -19,7 +19,7 @@ export const removeMessage = async (text: string) => {
 export const echoMessage = async (text: string) => {
   const messages = await getEchoMessages();
 
-  messages.sort(() => 0.5 - Math.random());
+  messages.sort((a, b) => b.text.length - a.text.length);
 
   for (const message of messages) {
     if (text.includes(message.text)) return message.message;
