@@ -22,6 +22,12 @@ export const echoMessage = async (text: string) => {
   messages.sort((a, b) => b.text.length - a.text.length);
 
   for (const message of messages) {
-    if (text.includes(message.text)) return message.message;
+    if (text.includes(message.text)) {
+      const matchCount = text.match(new RegExp(message.text, 'g')).length;
+
+      return Array.from(Array(matchCount).keys())
+        .map(() => message.message)
+        .join(' ');
+    }
   }
 };
