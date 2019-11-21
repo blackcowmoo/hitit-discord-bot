@@ -24,8 +24,8 @@ const commandParser = async (command: string, options: string[]): Promise<string
       return lolchess(['Aind']);
     case '!주머니':
       return lolchess(['영판항']);
-    case '!크로스핏':
-      return 'https://namu.wiki/w/크로스핏';
+    case '!주사위':
+      return Math.ceil(Math.random() * +options[0]).toString();
     // case '!cmd':
     //   return 'Command: ' + (await echo([command, ...options].join(' ')));
     case '!echo':
