@@ -26,6 +26,8 @@ const commandParser = async (command: string, options: string[]): Promise<string
       return lolchess(['영판항']);
     case '!주사위':
       return Math.ceil(Math.random() * +options[0]).toString();
+    case '!가바보':
+    case '!강감찬':
     case '!가위바위보':
       return ['가위', '바위', '보'][Math.floor(Math.random() * 3)];
     // case '!cmd':
