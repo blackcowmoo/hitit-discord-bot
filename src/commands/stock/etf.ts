@@ -14,7 +14,7 @@ const getStockFromInvesting = async (url: string, id: number) => {
     headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36' },
   });
   const $ = cheerio.load(html);
-  
+
   const price = $(`.pidExt-${id}-last`).text() ? $(`.pidExt-${id}-last`).text() : $(`.inlineblock.pid-${id}-last`).text();
   const dollar = $('.js-item-last.pid-650-last').text();
 
@@ -41,5 +41,7 @@ export const stock = async (command: string): Promise<string> => {
       return await getStockFromInvesting('/equities/altria-group', 8044);
     case '!ba':
       return await getStockFromInvesting('/equities/boeing-co', 238);
+    case '!spce':
+      return await getStockFromInvesting('/equities/social-capital-hedosophia', 1052758);
   }
 };
