@@ -30,18 +30,18 @@ export const getStockFromInvesting = async (url: string, id: number) => {
 };
 
 export const stock = async (command: string): Promise<string> => {
-  switch (command.toLocaleLowerCase()) {
-    case '!voo':
-      return await getStockFromInvesting('/etfs/vanguard-s-p-500', 38165);
-    case '!agg':
-      return await getStockFromInvesting('/etfs/ishares-barclays-agg', 503);
-    case '!tvix':
-      return await getStockFromInvesting('/etfs/velocityshares-dly-2x-vix-sh.-term-historical-data', 38153);
-    case '!mo':
-      return await getStockFromInvesting('/equities/altria-group', 8044);
-    case '!ba':
-      return await getStockFromInvesting('/equities/boeing-co', 238);
-    case '!spce':
-      return await getStockFromInvesting('/equities/social-capital-hedosophia', 1052758);
-  }
+  // switch (command.toLocaleLowerCase()) {
+  //   case '!voo':
+  //     return await getStockFromInvesting('/etfs/vanguard-s-p-500', 38165);
+  //   case '!agg':
+  //     return await getStockFromInvesting('/etfs/ishares-barclays-agg', 503);
+  //   case '!tvix':
+  //     return await getStockFromInvesting('/etfs/velocityshares-dly-2x-vix-sh.-term-historical-data', 38153);
+  //   case '!mo':
+  //     return await getStockFromInvesting('/equities/altria-group', 8044);
+  //   case '!ba':
+  //     return await getStockFromInvesting('/equities/boeing-co', 238);
+  //   case '!spce':
+  //     return await getStockFromInvesting('/equities/social-capital-hedosophia', 1052758);
+  // }
 };
