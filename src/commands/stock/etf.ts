@@ -16,10 +16,12 @@ export const getStockFromInvesting = async (url: string, id: number) => {
   const $ = cheerio.load(html);
 
   const price = $(`.pidExt-${id}-last`).text() ? $(`.pidExt-${id}-last`).text() : $(`.inlineblock.pid-${id}-last`).text();
+  const change = $(`.inlineblock > .pid-${id}-pc`).text();
   const dollar = $('.js-item-last.pid-650-last').text();
 
   const result = {
     가격: price,
+    변동폭: change,
     환율: dollar,
     한국가격: makePrice(+price.replace(',', '') * +dollar.replace(',', '')),
   };
