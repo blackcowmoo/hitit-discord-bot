@@ -17,11 +17,13 @@ export const getStockFromInvesting = async (url: string, id: number) => {
 
   const price = $(`.pidExt-${id}-last`).text() ? $(`.pidExt-${id}-last`).text() : $(`.inlineblock.pid-${id}-last`).text();
   const change = $(`.inlineblock > .pid-${id}-pc`).text();
+  const percentage = $(`.inlineblock > .pid-${id}-pcp`).text();
   const dollar = $('.js-item-last.pid-650-last').text();
 
   const result = {
     가격: price,
     변동폭: change,
+    등락률: `${percentage}%`,
     환율: dollar,
     한국가격: makePrice(+price.replace(',', '') * +dollar.replace(',', '')),
   };
