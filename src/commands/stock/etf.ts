@@ -23,7 +23,7 @@ export const getStockFromInvesting = async (url: string, id: number) => {
   const result = {
     가격: price,
     변동폭: change,
-    등락률: `${percentage}%`,
+    등락률: percentage,
     환율: dollar,
     한국가격: makePrice(+price.replace(',', '') * +dollar.replace(',', '')),
   };
