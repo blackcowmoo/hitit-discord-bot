@@ -20,13 +20,18 @@ export const getStockFromInvesting = async (url: string, id: number) => {
   const percentage = $(`.inlineblock > .pid-${id}-pcp`).text();
   const dollar = $('.js-item-last.pid-650-last').text();
 
+  const bottomText = $('.inlineblock .bottom').text();
+
   const result = {
     가격: price,
     변동폭: change,
     등락률: percentage,
-    환율: dollar,
-    한국가격: makePrice(+price.replace(',', '') * +dollar.replace(',', '')),
   };
+
+  if (!bottomText.includes('KRW')) {
+    result['환율'] = dollar;
+    result['한국가격'] = makePrice(+price.replace(',', '') * +dollar.replace(',', ''));
+  }
 
   return Object.entries(result)
     .map(e => `${e[0]}: ${e[1]}`)
