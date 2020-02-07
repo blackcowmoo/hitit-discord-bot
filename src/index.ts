@@ -51,9 +51,11 @@ const commandParser = async (command: string, options: string[]): Promise<string
     return stockResult;
   }
 
-  const echoResult = await echoMessage([command, ...options].join(' '));
-  if (echoResult) {
-    return echoResult;
+  if (command[0] !== '!') {
+    const echoResult = await echoMessage([command, ...options].join(' '));
+    if (echoResult) {
+      return echoResult;
+    }
   }
 
   try {
