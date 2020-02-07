@@ -6,7 +6,7 @@ import rp from 'request-promise';
 import cheerio from 'cheerio';
 import { makePrice } from '@/lib/utils/number';
 
-const getStockFromInvesting = async (url: string, id: number) => {
+export const getStockFromInvesting = async (url: string, id: number) => {
   const URL = `https://kr.investing.com/${url}`;
   const html: string = await rp({
     method: 'GET',

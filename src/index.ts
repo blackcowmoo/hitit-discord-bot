@@ -9,6 +9,7 @@ import { stock } from '@/commands/stock';
 import { echo, echoMessage, removeMessage, getEchoMessage } from '@/commands/echo';
 
 import { app } from '@/lib/express';
+import { stockSearch } from './commands/stock/search';
 
 const commandParser = async (command: string, options: string[]): Promise<string> => {
   let tmp: any;
@@ -53,6 +54,15 @@ const commandParser = async (command: string, options: string[]): Promise<string
   const echoResult = await echoMessage([command, ...options].join(' '));
   if (echoResult) {
     return echoResult;
+  }
+
+  try {
+    const stockSearchResult = await stockSearch(command.toLowerCase());
+    if (stockSearchResult) {
+      return stockSearchResult;
+    }
+  } catch (err) {
+    console.error(err);
   }
 };
 
