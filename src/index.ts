@@ -12,6 +12,12 @@ import { app } from '@/lib/express';
 import { stockSearch } from './commands/stock/search';
 
 const commandParser = async (command: string, options: string[]): Promise<string> => {
+  if (command[0] !== '!') {
+    const echoResult = await echoMessage([command, ...options].join(' '));
+    if (echoResult) {
+      return echoResult;
+    }
+  }
   let tmp: any;
 
   switch (command.toLowerCase()) {
@@ -51,17 +57,12 @@ const commandParser = async (command: string, options: string[]): Promise<string
     return stockResult;
   }
 
-  if (command[0] !== '!') {
-    const echoResult = await echoMessage([command, ...options].join(' '));
-    if (echoResult) {
-      return echoResult;
-    }
-  }
-
   try {
-    const stockSearchResult = await stockSearch(command.toLowerCase());
-    if (stockSearchResult) {
-      return stockSearchResult;
+    if (command[0] === '!') {
+      const stockSearchResult = await stockSearch(command.toLowerCase());
+      if (stockSearchResult) {
+        return stockSearchResult;
+      }
     }
   } catch (err) {
     console.error(err);
