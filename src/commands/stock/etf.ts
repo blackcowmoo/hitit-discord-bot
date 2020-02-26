@@ -52,5 +52,7 @@ export const stock = async (command: string): Promise<string> => {
       return await getStockFromInvesting('/equities/boeing-co', 238);
     case '!spce':
       return await getStockFromInvesting('/equities/social-capital-hedosophia', 1052758);
+    case '!main':
+      return await getStockFromInvesting('/equities/main-street-capital-corp', 24300);
   }
 };
