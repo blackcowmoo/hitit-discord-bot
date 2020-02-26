@@ -16,8 +16,8 @@ export const getStockFromInvesting = async (url: string, id: number) => {
   const $ = cheerio.load(html);
 
   const price = $(`.pidExt-${id}-last`).text() ? $(`.pidExt-${id}-last`).text() : $(`.inlineblock.pid-${id}-last`).text();
-  const change = $(`.inlineblock > .pid-${id}-pc`).text();
-  const percentage = $(`.inlineblock > .pid-${id}-pcp`).text();
+  const change = $(`.inlineblock > .pidExt-${id}-pc`).text() ? $(`.inlineblock > .pidExt-${id}-pc`).text() : $(`.inlineblock > .pid-${id}-pc`).text();
+  const percentage = $(`.inlineblock > .pidExt-${id}-pcp`).text() ? $(`.inlineblock > .pidExt-${id}-pcp`).text() : $(`.inlineblock > .pid-${id}-pcp`).text();
   const dollar = $('.js-item-last.pid-650-last').text();
 
   const bottomText = $('.inlineblock .bottom').text();
