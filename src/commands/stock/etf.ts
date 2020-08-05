@@ -34,7 +34,7 @@ export const getStockFromInvesting = async (url: string, id: number) => {
   }
 
   return Object.entries(result)
-    .map(e => `${e[0]}: ${e[1]}`)
+    .map((e) => `${e[0]}: ${e[1]}`)
     .join('\n');
 };
 
@@ -54,5 +54,7 @@ export const stock = async (command: string): Promise<string> => {
       return await getStockFromInvesting('/equities/social-capital-hedosophia', 1052758);
     case '!main':
       return await getStockFromInvesting('/equities/main-street-capital-corp', 24300);
+    case '!net':
+      return await getStockFromInvesting('/equities/cloudflare-inc', 1152334);
   }
 };

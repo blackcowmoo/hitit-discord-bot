@@ -3,84 +3,27 @@
  */
 
 import '@/config';
+import Discord from 'discord.js';
+import { commandParser } from '@/commands';
 
-import lolchess from '@/commands/lolchess';
-import { stock } from '@/commands/stock';
-import { echo, echoMessage, removeMessage, getEchoMessage } from '@/commands/echo';
+const client = new Discord.Client();
 
-import { app } from '@/lib/express';
-import { stockSearch } from './commands/stock/search';
+// Create an event listener for messages
+client.on('message', async (message) => {
+  if (!message.author.bot) {
+    try {
+      if (message && message.content) {
+        const [command, ...options] = message.content.split(' ');
+        const result = await commandParser(command, options);
 
-const commandParser = async (command: string, options: string[]): Promise<string> => {
-  if (command[0] !== '!') {
-    const echoResult = await echoMessage([command, ...options].join(' '));
-    if (echoResult) {
-      return echoResult;
-    }
-  }
-  let tmp: any;
-
-  switch (command.toLowerCase()) {
-    case '!lolchess':
-    case '!롤토체스':
-    case '!롤체':
-      return lolchess(options);
-    case '!내바박':
-      return lolchess(['고스트', '체스왕']);
-    case '!천년정지':
-      return lolchess(['Aind']);
-    case '!주머니':
-      return lolchess(['영판항']);
-    case '!주사위':
-      return Math.ceil(Math.random() * +options[0]).toString();
-    case '!가바보':
-    case '!강감찬':
-    case '!가위바위보':
-      return ['가위', '바위', '보'][Math.floor(Math.random() * 3)];
-    // case '!cmd':
-    //   return 'Command: ' + (await echo([command, ...options].join(' ')));
-    case '!echo':
-      if (options.length === 0) {
-        return (await getEchoMessage()).map(e => `${e.text}: ${e.message}`).join('\n');
+        if (result) {
+          message.channel.send(result);
+        }
       }
-
-      [, ...tmp] = options;
-
-      return echo(options[0] || '', tmp.join(' ')) && '';
-
-    case '!!echo':
-      return removeMessage(options[0]) && '';
-  }
-
-  const stockResult = await stock(command.toLowerCase());
-  if (stockResult) {
-    return stockResult;
-  }
-
-  try {
-    if (command[0] === '!') {
-      const stockSearchResult = await stockSearch(command.toLowerCase());
-      if (stockSearchResult) {
-        return stockSearchResult;
-      }
+    } catch (err) {
+      console.error(err);
     }
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-app.use('/', async (req, res) => {
-  try {
-    if (!req.query.content) return res.status(404).send('');
-    const [command, ...options] = req.query.content.split(' ');
-    return res.send(await commandParser(command, options));
-  } catch (err) {
-    console.error(err);
-    return res.status(500).send('');
   }
 });
 
-const port = parseInt(process.env.PORT, 10) || 3000;
-app.listen(port, function() {
-  console.log(`Express server has started on port ${port}`);
-});
+client.login(process.env.DISCORD_TOKEN);

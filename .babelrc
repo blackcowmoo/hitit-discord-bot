@@ -1,11 +1,7 @@
 {
-  "presets": ["@babel/typescript", ["@babel/env", { "targets": { "node": "6" } }]],
+  "presets": ["@babel/typescript", ["@babel/env", { "targets": { "node": "12" } }]],
   "plugins": [["module-resolver", { "root": ["./src"], "alias": { "@": "./src" } }]],
   "sourceMaps": "inline",
   "comments": false,
-  "env": {
-    "production": {
-      "presets": ["minify"]
-    }
-  }
+  "env": { "production": { "presets": ["minify"] } }
 }
