@@ -2,11 +2,11 @@ name: github-actions/build
 on:
   pull_request:
     branches:
-      - main
+      - develop
 
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   build:
