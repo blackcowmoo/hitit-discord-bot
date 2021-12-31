@@ -2,12 +2,12 @@ name: github-actions/docker/build-and-push
 on:
   pull_request:
     branches:
-      - main
+      - develop
     types: [labeled, synchronize, opened]
 
   push:
     branches:
-      - main
+      - develop
 
 env:
   REGISTRY: ${{ secrets.HARBOR_URL }}
