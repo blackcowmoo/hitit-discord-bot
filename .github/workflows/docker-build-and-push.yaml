@@ -40,8 +40,8 @@ jobs:
       - name: Upload build
         uses: actions/upload-artifact@v2
         with:
-          name: .next
-          path: .next
+          name: dist
+          path: dist
 
   push:
     if: contains(github.event.pull_request.labels.*.name, 'deploy') || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main'
@@ -68,8 +68,8 @@ jobs:
       - name: Download build
         uses: actions/download-artifact@v2
         with:
-          name: .next
-          path: .next
+          name: dist
+          path: dist
 
       - name: Set docker registry (PR)
         run: echo "DOCKER_REGISTRY=$REGISTRY/pr" >> $GITHUB_ENV
