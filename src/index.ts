@@ -12,7 +12,6 @@ const client = new Discord.Client();
 client.on('message', async (message) => {
   if (!message.author.bot) {
     try {
-      console.log('message', JSON.stringify(message));
       if (message && message.content) {
         const [command, ...options] = message.content.split(' ');
         const result = await commandParser(command, options);
